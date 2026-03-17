@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('customer_id');
             $table->string('product_name');
             $table->string('brand_name');
             $table->integer('qty');
+            $table->integer('price');
+            $table->integer('total_price');
+            $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 

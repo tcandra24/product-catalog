@@ -17,9 +17,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('category_id');
+            $table->integer('price');
             $table->timestamps();
 
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
